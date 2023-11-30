@@ -6,7 +6,8 @@ import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Spinner } from 
 
 const AllCouponContainer = ({ coupon, formatDate }) => {
     const [open, handleOpen, loadingRemove, handleRemoveCoupon] = CouponCardHook(coupon);
-    const dateString = coupon.expire;
+
+    const dateString = coupon?.expire;
 
   return (
     <div className="flex border border-gray-300 rounded-xl p-4 justify-between items-start">

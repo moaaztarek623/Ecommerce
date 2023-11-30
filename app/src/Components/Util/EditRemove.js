@@ -1,3 +1,4 @@
+import { AiOutlineDelete } from "react-icons/ai"; 
 import { Button } from '@material-tailwind/react';
 import React from 'react'
 import { FaEdit } from 'react-icons/fa';
@@ -11,7 +12,7 @@ const EditRemove = ({ className, remove, onClickEdit, onClickRemove, pathEdit })
       <Button color='gray' className='flex items-center gap-1 hover:!shadow-none !p-2 text-sm' variant="text" onClick={onClickEdit}>تعديل<FaEdit className="text-sm"/></Button>
     </Link>
       {
-        remove !== "no" ? <Button color='red' className='flex items-center gap-1 hover:!shadow-none !p-2 text-sm' variant="text" onClick={onClickRemove}>ازالة<MdOutlineRemoveShoppingCart className="text-sm"/></Button> : null
+        remove !== "no" ? <Button color='red' className='flex items-center gap-1 hover:!shadow-none !p-2 text-sm' variant="text" onClick={onClickRemove}>حذف<AiOutlineDelete className="text-sm"/></Button> : null
       }
     </div>
   )

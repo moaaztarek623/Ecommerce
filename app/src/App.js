@@ -34,14 +34,25 @@ import ResetePasswordPage from './Pages/Auth/ResetePasswordPage';
 import { ToastContainer } from 'react-toastify';
 import UserEditAdressPage from './Pages/User/UserEditAdressPage';
 import { useEffect } from 'react';
+import ProtectedRouteHook from './hook/auth/protected-route-hook';
+import ProtectedRoute from './Components/Util/ProtectedRoute';
+import ProductsByCategoryPage from './Pages/Products/ProductsByCategoryPage';
+import ProductsByBrandPage from './Pages/Products/ProductsByBrandPage';
+import CompleteCashOrderAdressAndPayMethodPage from './Pages/Order/CompleteCashOrderAdressAndPayMethodPage';
 
 function App() {
-  useEffect(() => {
-    localStorage.removeItem('searchWord')
-  localStorage.removeItem('queryCat')
-  localStorage.removeItem('sortType')
-  localStorage.removeItem('queryBrand')
-  }, [])
+    useEffect(() => {
+      localStorage.removeItem('searchWord')
+      localStorage.removeItem('queryCat')
+      localStorage.removeItem('sortType')
+      localStorage.removeItem('queryBrand')
+    }, []);
+
+    const [isAdmin, isUser, ] = ProtectedRouteHook();
+
+      console.log(isUser);
+      console.log(isAdmin);
+
   return (
     <div className="font">
         <BrowserRouter>
@@ -54,12 +65,14 @@ function App() {
               <Route path='/allBrand' element={<AllBrandPage />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path='/products/:id' element={<ProdutDetails />} />
+              <Route path='/products/category/:id' element={<ProductsByCategoryPage />} />
+              <Route path='/products/brand/:id' element={<ProductsByBrandPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/auth/forget-password" element={<ForgetPasswordPage />} />
               <Route path="/auth/resete-code" element={<ReseteCodePage />} />
               <Route path="/auth/resete-password" element={<ResetePasswordPage />} />
             {/*admin*/}
-            <Route path="/admin">
+            <Route path="/admin" element={<ProtectedRoute auth={isAdmin}/>}>
               <Route path="/admin/addProducts" element={<AdminAddProducts />} />
               <Route path="/admin/allProducts" element={<AdminAllProductsPage />} />
               <Route path="/admin/allOrders" element={<AdminAllOrders />} />
@@ -72,12 +85,15 @@ function App() {
               <Route path="/admin/editCoupon/:id" element={<AdminEditCouponPage />} />
             </Route>
             {/*user*/}
+            <Route element={<ProtectedRoute auth={isUser}/>}>
               <Route path="/user/allOrders" element={<UserAllOrdersPage />} />
               <Route path="/user/favProducts" element={<UserFavProductsPage />} />
               <Route path="/user/allAdress" element={<UserAllAdressPage />} />
               <Route path="/user/addAdress" element={<UserAddAdressPage />} />
               <Route path="/user/profile" element={<UserProfilePage />} />
               <Route path="/user/editAdress/:id" element={<UserEditAdressPage />} />
+              <Route path="/user/completeOrder/adress&&paymethod/:id" element={<CompleteCashOrderAdressAndPayMethodPage />} />
+            </Route>
           </Routes>
         </BrowserRouter>
         <ToastContainer />

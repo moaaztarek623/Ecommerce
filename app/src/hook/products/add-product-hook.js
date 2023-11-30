@@ -37,9 +37,7 @@ const AddProductHook = () => {
     const [select, setselect] = useState("0");
   
     const [subcategoryOptions, setsubcategoryOptions] = useState([]);
-  
-    const [multiArray, setmultiArray] = useState([]);
-  
+    
     const [brandSelect, setbrandSelect] = useState("0");
 
     const products = useSelector(state => state.allProducts.product);
@@ -212,8 +210,8 @@ const AddProductHook = () => {
         formData.append("category", select);
         formData.append("description", description);
         formData.append("quantity", NumberOfProducts);
-        formData.append("price", price);
-        formData.append("priceBefore", priceBefore);
+        formData.append("price", priceBefore);
+        formData.append("priceAfterDiscount", price);
         formData.append("brand", brandSelect);
         arrayColor.map(item => formData.append("availableColors", item));
         imgs.map(item => formData.append("images", item));

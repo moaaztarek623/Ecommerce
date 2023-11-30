@@ -16,7 +16,7 @@ const HomeCategory = () => {
               loading === false ? (
                 itemCat ? 
                   itemCat.slice(0, 6).map((item, index) => {
-                  return (<CategoryCard key={index} img={item.image} title={item.name} />)
+                  return (<CategoryCard key={index} id={item._id} img={item.image} title={item.name} />)
                 })
                : null) : (<SpinnerContainer />)
             }

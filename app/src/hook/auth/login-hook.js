@@ -67,6 +67,7 @@ const LoginHook = () => {
                       localStorage.setItem("user", JSON.stringify(res.data.data));
                       emptyAfterLogin();
                       notify("تم تسجيل الدخول", "success");
+                      window.location.reload(false);
                   }
               }
           }else{

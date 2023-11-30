@@ -17,13 +17,13 @@ const ProductDetailsContainer = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [id])
   
-  const [item, catItem, brandItem, price, loadingProduct, loadingCat, loadingBrand, productLikeItem, catName, brandName, cat, brand] = ViewProductDetailsHook(idPage);
+  const [item, catItem, brandItem, price, loadingProduct, loadingCat, loadingBrand, productLikeItem, catName, brandName, cat, brand, priceAfterDiscount] = ViewProductDetailsHook(idPage);
 
   return (
     <div className = "container mx-auto">
         <div className='flex gap-8 p-6'>
             <ProductsGallery  />
-            <ProductTextsDetails price={price} item={item} title={item.title} catName={catName} brandName={brandName} />
+            <ProductTextsDetails price={price} item={item} title={item.title} catName={catName} brandName={brandName} priceAfterDiscount={priceAfterDiscount} />
         </div>
         <RateContainer rateResults={item.ratingsQuantity} rateQty={item.ratingsAverage} />
         <div className='pb-[8rem]'>

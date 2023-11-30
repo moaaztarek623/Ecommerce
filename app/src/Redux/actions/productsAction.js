@@ -1,5 +1,5 @@
 import { useInsertImage } from "../../Hooks/useInsertData";
-import { CREATE_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, GET_ALL_PRODUCTS, GET_ERROR, GET_PRODUCT_DETAILS, GET_PRODUCT_LIKE } from "../types/type";
+import { CREATE_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, GET_ALL_PRODUCTS, GET_ALL_PRODUCTS_BY_BRAND, GET_ALL_PRODUCTS_BY_CATEGORY, GET_ERROR, GET_PRODUCT_DETAILS, GET_PRODUCT_LIKE } from "../types/type";
 import useGetData from '../../Hooks/useGetData'
 import useDeleteData from "../../Hooks/useDeleteData";
 import { useEditDataWithImage } from "../../Hooks/useEditData";
@@ -58,6 +58,45 @@ export const getAllProductsPage = (limit, page) => async (dispatch) => {
             payload: "Error" + e
         });
         console.error("Error" + e);
+    }
+};
+
+export const getAllProductsByCategory = (limit, page, id) => async (dispatch) => {
+    try {
+        const res = await useGetData(`/api/v1/products?category=${id}&limit=${limit}&page=${page}`);
+
+        dispatch({
+            type: GET_ALL_PRODUCTS_BY_CATEGORY,
+            payload: res,
+            load: true
+        });
+
+    } catch (e) {
+        dispatch({
+            type: GET_ALL_PRODUCTS_BY_CATEGORY,
+            payload: e.response
+        });
+        console.error(e.response);
+    }
+};
+
+export const getAllProductsByBrand = (limit, page, id) => async (dispatch) => {
+    try {
+        const res = await useGetData(`/api/v1/products?limit=${limit}&brand=${id}&page=${page}`);
+
+        dispatch({
+            type: GET_ALL_PRODUCTS_BY_BRAND,
+            payload: res,
+            load: true
+        });
+        console.log(res);
+
+    } catch (e) {
+        dispatch({
+            type: GET_ALL_PRODUCTS_BY_BRAND,
+            payload: e.response
+        });
+        console.error(e.response);
     }
 };
 

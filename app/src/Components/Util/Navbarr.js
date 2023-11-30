@@ -1,3 +1,4 @@
+import { MdProductionQuantityLimits } from "react-icons/md"; 
 import { AiFillHeart } from "react-icons/ai"; 
 import { IoMdArrowDropdown } from "react-icons/io"; 
 import { AiOutlineShoppingCart } from "react-icons/ai"; 
@@ -10,6 +11,7 @@ import NavBarSearchHook from "../../hook/search/navbar-search-hook";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoggedUser } from "../../Redux/actions/authAction";
 import { gitAllProductWishList } from "../../Redux/actions/wishAction";
+import GetAllCartItemsHook from "../../hook/cart/get-all-cart-items-hook";
 
 const Navbarr = () => {
 
@@ -58,7 +60,7 @@ const Navbarr = () => {
     }
   }, [user])
 
-  const res = useSelector(state => state.auth.loggedUser)
+  // const res = useSelector(state => state.auth.loggedUser)
 
   const clickMenu = (index) => {
     if (index === 0) {
@@ -67,8 +69,6 @@ const Navbarr = () => {
       logOut();
     }
   }
-
-  console.log(res);
 
   const arrayOptions = [
     {title: userAdmin},
@@ -98,12 +98,12 @@ const Navbarr = () => {
   }, []);
   
   useEffect(() => {
-    setFavProductsLength(localStorage.getItem("favProductsLength"))
-  }, [localStorage.getItem("favProductsLength")])
+    setFavProductsLength(localStorage.getItem("favProductsLength"));
+  }, [localStorage.getItem("favProductsLength")]);
 
+  
   useEffect(() => {
       if (loading === false) {
-        console.log(allWishList);
           if (allWishList.data.length >= 1) {
             localStorage.setItem("favProductsLength", allWishList.data.length);
             setFavProductsLength(localStorage.getItem("favProductsLength"))
@@ -111,8 +111,10 @@ const Navbarr = () => {
             setFavProductsLength(0)
             localStorage.setItem("favProductsLength", 0);
           }
-      }
-  }, [loading]);
+        }
+      }, [loading]);
+
+      const [itemsNum] = GetAllCartItemsHook();
 
   return (
     <nav className="sticky top-0 w-full z-[998] px-24 py-1 h-fit flex flex-col sm:flex-row justify-evenly items-center gap-4" style={{background: "rgba(33,37,41)"}}>
@@ -141,9 +143,14 @@ const Navbarr = () => {
               </Button>
             </Link>
           }
+          <Link to="/products">
+            <Button variant="text" color="white" className="capitalize flex items-center gap-2 !text-[0.9rem] relative">
+                 المنتجات <MdProductionQuantityLimits style={{fontSize: "1rem"}} />
+            </Button>
+          </Link>
           <Link to="/cart">
             <Button variant="text" color="white" className="capitalize flex items-center gap-2 !text-[0.9rem] relative">
-                <Chip color="red" value="0" className="w-fit absolute rounded-full w-6 h-6 text-xs left-0 flex items-center justify-center top-0" />
+                <Chip color="red" value={itemsNum} className="w-fit absolute rounded-full w-6 h-6 text-xs left-0 flex items-center justify-center top-0" />
                 عربة التسوق <AiOutlineShoppingCart style={{fontSize: "1rem"}} />
             </Button>
           </Link>

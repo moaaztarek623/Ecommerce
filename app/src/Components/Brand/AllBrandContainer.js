@@ -17,7 +17,7 @@ const AllBrandContainer = () => {
         {loading === false ? (
             brand.data ? 
               brand.data.slice(0, limit).map((item, index) => {
-                return (<BrandCard key={index} img={item.image} title={item.name}/>)
+                return (<BrandCard key={index} img={item.image} title={item.name} id={item._id}/>)
               })
               : <div>لا توجد تصنيفات</div>) : (<SpinnerContainer />)}
         </div>

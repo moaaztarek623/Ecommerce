@@ -1,4 +1,3 @@
-import AdressItem from '../../Components/User/AdressItem'
 //category
 export const GET_ALL_CTEGORY = "GET_ALL_CTEGORY";
 export const CREATE_CATEGORY = "CREATE_CATEGORY";
@@ -16,6 +15,8 @@ export const GET_SUB_CATEGORY = "GET_SUB_CATEGORY";
 //products
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const GET_ALL_PRODUCTS_BY_CATEGORY = "GET_ALL_PRODUCTS_BY_CATEGORY";
+export const GET_ALL_PRODUCTS_BY_BRAND = "GET_ALL_PRODUCTS_BY_BRAND";
 export const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS";
 export const GET_PRODUCT_LIKE = "GET_PRODUCT_LIKE";
 export const EDIT_PRODUCT = "EDIT_PRODUCT";
@@ -57,6 +58,18 @@ export const EDIT_ADRESS = "EDIT_ADRESS";
 //Profile
 export const EDIT_PROFILE = "EDIT_PROFILE";
 export const EDIT_PASSWORD = "EDIT_PASSWORD";
+
+//Cart
+export const ADD_TO_CART = "ADD_TO_CART";
+export const GET_ALL_CART_ITEMS = "GET_ALL_CART_ITEMS";
+export const DELETE_ALL_CART_ITEMS = "DELETE_ALL_CART_ITEMS";
+export const DELETE_ONE_CART_ITEM = "DELETE_ONE_CART_ITEM";
+export const UPDATE_CART_ITEM_QUANTITY = "UPDATE_CART_ITEM_QUANTITY";
+export const APLLY_COUPPON_TO_CART = "APLLY_COUPPON_TO_CART";
+
+//Order
+export const CREATE_CASH_ORDER = "CREATE_CASH_ORDER";
+export const GET_ALL_ORDER = "GET_ALL_ORDER";
 
 //error
 export const GET_ERROR = "GET_ERROR";

@@ -33,15 +33,15 @@ const ViewProductDetailsHook = (id) => {
   let catItem, brandItem = [];
   let catName, brandName, oneBrand, oneCat = "";
 
-  const getOne =  () => {
-    dispatch(getOneProduct(id));
+  const getOne = async () => {
+    await dispatch(getOneProduct(id));
     if(product){
       if (oneCat){
-        dispatch(getOneCategory(oneCat));
-        dispatch(getProductLike(oneCat));
+        await dispatch(getOneCategory(oneCat));
+        await dispatch(getProductLike(oneCat));
       } 
       if (oneBrand) 
-         dispatch(getOneBrand(oneBrand));
+        await dispatch(getOneBrand(oneBrand));
     }
   }
   
@@ -50,7 +50,7 @@ const ViewProductDetailsHook = (id) => {
     getOne();
   }, [id]);
   
-  let price = 0;
+  let price, priceAfterDiscount = 0;
   let productLikeItem = [];
 
   try {
@@ -59,7 +59,6 @@ const ViewProductDetailsHook = (id) => {
         catItem = cat ? cat.data : [];   
       }
   }
-
     if(cat){
       if (cat.data) {
         if (cat.data.name) { 
@@ -121,6 +120,18 @@ const ViewProductDetailsHook = (id) => {
   }
 
   try {
+    if (item) {
+      if (item.priceAfterDiscount) {
+        priceAfterDiscount = item ? item?.priceAfterDiscount.toLocaleString() : null;
+      }
+    } else {
+      priceAfterDiscount = 0;
+    }
+  } catch (e) {
+    console.error('Error', e)
+  }
+
+  try {
     if (productLike) {
       console.log(productLike);
       if (productLike.data) {
@@ -133,7 +144,7 @@ const ViewProductDetailsHook = (id) => {
     console.error('Error', e)
   }
 
-  return [item, catItem, brandItem, price, loadingProduct, loadingCat, loadingBrand, productLikeItem, catName, brandName, cat, brand];
+  return [item, catItem, brandItem, price, loadingProduct, loadingCat, loadingBrand, productLikeItem, catName, brandName, cat, brand, priceAfterDiscount];
 };
 
 export default ViewProductDetailsHook;

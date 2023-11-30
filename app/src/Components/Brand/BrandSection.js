@@ -18,7 +18,7 @@ const BrandSection = () => {
                     loading === false ? (
                       brand ? 
                         brand.slice(0, 5).map((item, index) => {
-                          return (<BrandCard key={index} img={item.image} title={item.name}/>)
+                          return (<BrandCard key={index} img={item.image} title={item.name} id={item._id}/>)
                         })
                       : null) : <SpinnerContainer />
                 }

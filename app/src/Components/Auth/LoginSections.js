@@ -7,6 +7,7 @@ import FooterLoginRegister from "../Util/FooterLoginRegister";
 import OnSubmit from '../Util/OnSubmit';
 
 const LoginSections = ({ email, password, handleEmail, handlePassword, loading, press, onSubmit }) => {
+    
     const [eyeOpen, seteyeOpen] = useState("true");
     const [type, setType] = useState("password");
     

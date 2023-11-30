@@ -13,10 +13,10 @@ const NavBarSearchHook = () => {
     
     const onChangeSearch = (e) => {
         if (window.location.pathname === '/products') {
-            localStorage.setItem("searchWord", e.target.value)
+            localStorage.setItem("searchWord", e.target.value);
             setsearchWord(e.target.value);
         }else {
-            navigate('/products')
+            navigate('/products');
         }
     }
     

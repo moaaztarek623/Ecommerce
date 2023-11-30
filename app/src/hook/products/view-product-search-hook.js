@@ -33,7 +33,6 @@ const ViewProductSearchHook = () => {
             word = '';
         if(sorT === undefined)
             sorT = '';    
-
         if(localStorage.getItem("queryCat") !== null) 
             queryCat = localStorage.getItem("queryCat");
         if(localStorage.getItem("queryBrand") !== null) 
@@ -42,13 +41,11 @@ const ViewProductSearchHook = () => {
             priceFrom = localStorage.getItem("priceFrom");
         if(localStorage.getItem("priceTo") !== null) 
             priceTo = localStorage.getItem("priceTo");
-
         if (priceFrom === "" || priceFrom < 0 || priceFrom === undefined) {
             priceFromStr = ""
         }else {
             priceFromStr = `price[gt]=${priceFrom}`
         }
-
         if (priceTo === "" || priceTo <= 0 || priceTo === undefined) {
             priceToStr = ""
         }else {

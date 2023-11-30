@@ -1,58 +1,37 @@
 import React from 'react'
-import SideBar from '../Util/SideBar';
 import SideBarUser from '../Util/SideBarUser';
 import SubTitle from '../Util/SubTitle'
 import Paginations from '../Pagination/Paginations';
 import UserOrderItem from './UserOrderItem';
+import GetAllOrderHook from '../../hook/order/get-all-order-hook';
+import UserOrderBox from './UserOrderBox';
 
 const UserAllOrder = () => {
-  return <div className="container mx-auto pb-[8rem]">
-      <div className="flex gap-8">
-        <SideBarUser actives={"1"} />
-        <div className="flex flex-col gap-4 basis-full">
-          <SubTitle title={"ادارة جميع الطلبات"} classDiv={"py-4 !px-0"} />
-          <div className="flex flex-col gap-3">
-            <div className = "flex flex-col gap-2 border border-gray-200 rounded-xl p-4 ">
-              <span className="font-bold text-gray-600 text-sm">
-                طلب رقم #<span className="text-gray-900 font-extrabold">
-                  1432
-                </span>
-              </span>
-              <UserOrderItem />
-              <UserOrderItem />
-              <span className="font-bold text-gray-600 text-sm">
-               الحالة <span className="text-gray-900 font-extrabold "> قيد التنفيذ</span>
-              </span>
+
+  const [loading, allOrder, numOfOrders, paginate, orderData, onPress] = GetAllOrderHook();
+
+  return (
+      <div className="container mx-auto pb-[8rem]">
+          <div className="flex gap-8">
+            <SideBarUser actives={"1"} />
+            <div className="flex flex-col gap-4 basis-full">
+            <div className='flex items-center gap-3'>
+              <SubTitle title={<><span>عدد الطلبات </span><span className='!font-body bg-yellow-400'>#{numOfOrders || 0}</span></>} classDiv={"!py-4 !px-0"} />
             </div>
-            <div className = "flex flex-col gap-2 border border-gray-200 rounded-xl p-4 ">
-              <span className="font-bold text-gray-600 text-sm">
-                طلب رقم #<span className="text-gray-900 font-extrabold">
-                  1432
-                </span>
-              </span>
-              <UserOrderItem />
-              <UserOrderItem />
-              <span className="font-bold text-gray-600 text-sm">
-               الحالة <span className="text-gray-900 font-extrabold "> قيد التنفيذ</span>
-              </span>
-            </div>
-            <div className = "flex flex-col gap-2 border border-gray-200 rounded-xl p-4 ">
-              <span className="font-bold text-gray-600 text-sm">
-                طلب رقم #<span className="text-gray-900 font-extrabold">
-                  1432
-                </span>
-              </span>
-              <UserOrderItem />
-              <UserOrderItem />
-              <span className="font-bold text-gray-600 text-sm">
-               الحالة <span className="text-gray-900 font-extrabold "> قيد التنفيذ</span>
-              </span>
+              { paginate?.numberOfPages >= 2 ? <Paginations onPress={onPress} pageCount={paginate?.numberOfPages ? paginate?.numberOfPages : 0} /> : null }
+              <div className="flex flex-col gap-8">
+                  {orderData?.length >= 1 ?
+                    orderData?.map((item, index) => {
+                      return (
+                          <UserOrderBox key={index} item={item} />
+                      )
+                    })
+                  : <h3 className='w-full flex justify-center items-center font-bold text-red-500'>لا يوجد طلبات حتى الان</h3>}
+              </div>
             </div>
           </div>
-          <Paginations classPagination={"pt-10"} />
-        </div>
       </div>
-    </div>;
+    )
 }
 
 export default UserAllOrder

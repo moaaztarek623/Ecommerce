@@ -3,11 +3,7 @@ import CategoryHeader from '../category/CategoryHeader'
 import SearchCountHeader from '../Util/SearchCountHeader'
 import AsideFilter from '../Util/AsideFilter'
 import CardProduct from './CardProduct'
-import Paginations from '../Pagination/Paginations'
 import SpinnerContainer from '../Util/Spinner'
-import ViewAllProductHook from '../../hook/products/view-all-products-hook'
-import { getAllProductsPage, getAllProductsSearch } from '../../Redux/actions/productsAction';
-import { useDispatch } from 'react-redux';
 import ViewProductSearchHook from '../../hook/products/view-product-search-hook';
 
 const PageProductsContainer = () => {
@@ -19,7 +15,7 @@ const PageProductsContainer = () => {
   const limit = 4;
 
   return (
-    <div>
+    <div className="mb-[3rem]">
       <CategoryHeader />
       <div className="container min-h-screen mx-auto">
         <SearchCountHeader onClick={getProducts} searchCount={results} onPress={onPress} pageCount={pagination.numberOfPages} />

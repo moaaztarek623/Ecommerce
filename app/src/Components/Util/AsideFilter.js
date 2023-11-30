@@ -7,7 +7,7 @@ const AsideFilter = () => {
   const [brandItem, catItem, checkCat, brandCheck, handlePriceFrom, handlePriceTo] = AsideFilterSearchHook();
 
   return (
-    <Card className="h-[calc(60vh-2rem)] text-sm w-48 p-4 shadow-none">
+    <Card className="h-full text-sm w-48 p-4 shadow-none">
         <div className=" p-2">
           <Typography variant="h5" color="blue-gray" className="text-lg">
             الفئة

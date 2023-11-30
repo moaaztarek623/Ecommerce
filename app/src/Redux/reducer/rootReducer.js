@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import categoryReducer from './categoryReducer'
 import brandReducer from './brandReducer'
 import subcategoryReducer from './subcategoryReducer';
@@ -9,6 +9,8 @@ import wishReducer from './wishReducer';
 import couponReducer from './couponReducer';
 import adressReducer from './adressReducer';
 import profileReducer from './profileReducer';
+import cartReducer from './cartReducer';
+import orderReducer from './orderReducer';
 
 export default combineReducers ({
     allCategory: categoryReducer,
@@ -21,4 +23,6 @@ export default combineReducers ({
     couponReducer: couponReducer,
     adressReducer: adressReducer,
     profileReducer: profileReducer,
+    cartReducer: cartReducer,
+    orderReducer: orderReducer,
 })

@@ -5,7 +5,7 @@ import UserAllOrder from '../../Components/User/UserAllOrder';
 
 const UserAllOrdersPage = () => {
   return (
-    <div className="min-h-screen relative ">
+    <div className="min-h-screen relative bg-gray-50">
       <Navbarr />
       <UserAllOrder />
       <Footer />

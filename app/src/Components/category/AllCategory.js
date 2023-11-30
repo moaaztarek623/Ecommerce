@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CategoryCard from '../category/CategoryCard';
 import SubTitle from '../Util/SubTitle';
 import Paginations from '../Pagination/Paginations';
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCategory, getAllCategoryPage } from "../../Redux/actions/categoryAction";
 import { Spinner } from '@material-tailwind/react';
 import AllCategoryHook from '../../hook/category/all-category-hook';
 
@@ -18,8 +16,8 @@ const AllCategory = () => {
         {
             loading === false ? (
               category.data ? 
-                category.data.slice(0, 8).map((item) => {
-                  return (<CategoryCard img={item.image} title={item.name} />)
+                category.data.slice(0, 12).map((item) => {
+                  return (<CategoryCard img={item.image} id={item._id} title={item.name} />)
                 })
                : <div>لا توجد تصنيفات</div>) : (<div className='w-full flex items-center justify-center'>
                   <Spinner color='gray' className="h-8 w-8 text-gray-900" />

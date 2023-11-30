@@ -1,49 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { notify } from '../../Components/Util/notify';
-import { getAllAdresses } from '../../Redux/actions/adressAction';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { notify } from "../../Components/Util/notify";
+import { getAllAdresses } from "../../Redux/actions/adressAction";
 
 const UserViewAllAdressHook = () => {
-    const dispatch = useDispatch();
-      
-    const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
-    const [press, setPress] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-    const res =  useSelector(state => state.adressReducer.allAdresses);
+  const [press, setPress] = useState(false);
 
-    useEffect(() => {
-        const get = async () => {
-            setLoading(true);
-            setPress(true);
-            await dispatch(getAllAdresses());
-            setLoading(false);
-        };
-        get();
-    }, []);
+  const res = useSelector(state => state.adressReducer.allAdresses);
 
-    var allAdresses = "";
+  useEffect(() => {
+    const get = async () => {
+      setLoading(true);
+      setPress(true);
+      await dispatch(getAllAdresses());
+      setLoading(false);
+    };
+    get();
+  }, []);
 
-    try {
-        if (res && res.status === "success") {
-            allAdresses = res;
-        }else {
-            allAdresses = "";
+  var allAdresses = "";
+        try {
+            if (loading === false) {
+                if (res && res.status === "success") {
+                    allAdresses = res;
+                } else {
+                    allAdresses = "";
+                }
+            }
+        } catch (e) {
+                console.error("Error", e);
         }
-    } catch (e) {
-        console.error('Error', e)
-    }
-    
 
-    useEffect(() => {
-        if (loading === false) {
-            if(res)
-            console.log(res);
-        }
-    }, [loading]);
+  return [loading, press, allAdresses];
+};
 
-    return [loading, press, allAdresses];
-
-}
-
-export default UserViewAllAdressHook
+export default UserViewAllAdressHook;
